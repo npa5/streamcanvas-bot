@@ -7,12 +7,12 @@ import datetime
 import time
 
 if __name__ == "__main__":
-    conf = config.load()
-    img = image.load(conf["settings"]["image"])
+    conf = config.load() # loads config
+    img = image.load(conf["settings"]["image"]) 
     size = image.size(conf["settings"]["image"])
     start = conf["settings"]["start"]
     accounts = conf["accounts"]["accounts"]
-    placet = {}
+    placet = {} 
     completeIn = int(size[0]*size[1]*conf["settings"]["delay"]/len(conf["accounts"]["accounts"])) # calculates how long it will take to complete the pixelart
     log.info(f"Starting threads all threads, job will be done in about {datetime.timedelta(seconds =completeIn)} hours.")
     
