@@ -2,3 +2,4 @@ toml
 requests
 python-socketio
 log21
+PIL
