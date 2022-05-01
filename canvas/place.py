@@ -22,13 +22,13 @@ def loop(acc, img, size, start):
     global i
     global n
     global pi
-    sio[acc] = socketio.Client()
-    sio[acc].connect('https://api.streamcanvas.raven.fo')
+    sio[acc] = socketio.Client() # Creates socketio client
+    sio[acc].connect('https://api.streamcanvas.raven.fo') # Connect to streamcanvas api
     conf = toml.load("config.toml")
     log.info(f"started thread {acc}")
 
     while True:
-        if img[i] != "000000":
+        if img[i] != "000000": # skips pixel if transparent (yes i know fully black pixels get skipped too but im too lazy to change this rn)
             time.sleep(conf["settings"]["delay"])
             place(img[i], [start[0] + pi, start[1] + n], acc, sio[acc])
 
