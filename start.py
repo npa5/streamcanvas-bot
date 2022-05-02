@@ -15,11 +15,11 @@ if __name__ == "__main__":
     channel = conf["settings"]["channel"]
     accounts = conf["accounts"]["accounts"]
     placet = {}
+    token = {}
     completeIn = int(size[0]*size[1]*conf["settings"]["delay"]/len(conf["accounts"]["accounts"]))
-    token = account.auth(accounts, channel)
 
     log.info(f"Starting threads all threads, job will be done in about {datetime.timedelta(seconds =completeIn)} hours.")
-    for acc in token:
-        placet[acc] = threading.Thread(target=place.loop, args=(token[acc],img,size,start))
-        placet[acc].start()
+    for i in range(len(accounts)):
+        placet[i] = threading.Thread(target=place.loop, args=(accounts[i],img,size,start,channel))
+        placet[i].start()
         time.sleep(conf["settings"]["offset"])
