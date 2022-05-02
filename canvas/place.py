@@ -22,9 +22,9 @@ def loop(acc, img, size, start):
     global i
     global n
     global pi
-    sio[acc] = socketio.Client() # Creates socketio client
-    sio[acc].connect('https://api.streamcanvas.raven.fo') # Connect to streamcanvas api
     conf = toml.load("config.toml")
+    sio[acc] = socketio.Client() # Creates socketio client
+    sio[acc].connect(f'https://api.streamcanvas.raven.fo/{conf["settings"]["channel"]}') # Connect to streamcanvas api
     log.info(f"started thread {acc}")
 
     while True:
