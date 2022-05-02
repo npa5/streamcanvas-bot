@@ -1,0 +1,9 @@
+{
+  "query": "\nmutation LinkUserMutation(\n  $channelID: ID!\n  $extensionID: ID!\n  $token: String!\n  $showUser: Boolean!\n) {\n  extensionLinkUser(input: {\n    channelID: $channelID,\n    extensionID: $extensionID,\n    jwt: $token,\n    showUser: $showUser,\n  }) {\n    token {\n      extensionID\n      jwt\n    }\n    helixToken {\n      jwt\n    }\n  }\n}\n",
+  "variables": {
+    "channelID": "465810007",
+    "extensionID": "9jjigdr1wlul7fbginbq7h76jg9h3s",
+    "token": "token",
+    "showUser": true
+  }
+} 

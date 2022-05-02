@@ -1,0 +1,12 @@
+{
+    "extensions": {
+        "persistedQuery": {
+            "sha256Hash": "37a5969f117f2f76bc8776a0b216799180c0ce722acb92505c794a9a4f9737e7",
+            "version": 1
+        }
+    },
+    "operationName": "ExtensionsForChannel",
+    "variables": {
+        "channelID": "465810007"
+    }
+}
