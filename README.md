@@ -5,7 +5,7 @@ just dont use this to annoy people too much or raven will likely take countermea
 
 ## setup guide
 
-first, install all requirements with ```pip install -r requirements.txt ```
+first, install all requirements with ```pip install -r requirements.txt```
 next, execute the start.py file to generate a config.toml file that you can edit according to your preferences
 
 important before you start the bot:
