@@ -1,7 +1,7 @@
 # streamcanvas-bot
 streamcanvas for lazy people
 
-just dont use this to annoy people too much or raven will likely take countermeasures
+just dont use this to annoy people too much or raven will likely take countermeasures (not good)
 
 ## setup guide
 
