@@ -9,10 +9,9 @@ import time
 
 if __name__ == "__main__":
     conf = config.load()
-    img = image.load(conf["settings"]["image"])
-    size = image.size(conf["settings"]["image"])
-    start = conf["settings"]["start"]
-    channel = conf["settings"]["channel"]
+    settings = conf["settings"]
+    img = image.load(settings["image"])
+    size = image.size(settings["image"])
     accounts = conf["accounts"]["accounts"]
     placet = {}
     token = {}
@@ -20,6 +19,6 @@ if __name__ == "__main__":
 
     log.info(f"Starting threads all threads, job will be done in about {datetime.timedelta(seconds =completeIn)} hours.")
     for i in range(len(accounts)):
-        placet[i] = threading.Thread(target=place.loop, args=(accounts[i],img,size,start,channel))
+        placet[i] = threading.Thread(target=place.loop, args=(accounts[i],img,size,settings))
         placet[i].start()
         time.sleep(conf["settings"]["offset"])
