@@ -16,7 +16,6 @@ if __name__ == "__main__":
         img = None
     accounts = conf["accounts"]["accounts"]
     placet = {}
-    token = {}
     
     for i in range(len(accounts)):
         placet[i] = threading.Thread(target=place.loop, args=(accounts[i],img,settings))
