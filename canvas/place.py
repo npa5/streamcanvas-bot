@@ -34,7 +34,6 @@ def loop(acc, img, settings):
         while True:
             n = random.randint(0,len(img[0])-1)
             i = random.randint(0,len(img)-1)
-            print(n,i)
             if img[n][i] != '000000':
                 if [n, i] not in placed:
                     placed.append([i,n])
