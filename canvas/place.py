@@ -51,7 +51,7 @@ def loop(acc, img, settings):
             while place_at in placed:
                 place_at = [random.randint(settings["start"][0]-int(i),settings["start"][0]+int(i)),random.randint(settings["start"][1]-int(i),settings["start"][1]+int(i))]
                 i = i + settings["void_speed"]
-            place(settings["void_color"], [place_at[0], place_at[1]], acctoken, sio[acc])
+            place(settings["void_color"], place_at, acctoken, sio[acc])
             placed.append(place_at)
     else:
         log.error("Provided invalid mode.")
