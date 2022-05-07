@@ -14,4 +14,3 @@ def load():
 
     log.info("Successfully loaded config.")
     return config
-    
