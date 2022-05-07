@@ -7,7 +7,6 @@ import toml
 import requests
 import socketio
 sio = {}
-placed = []
 i = 0
 
 def place(color, pixel, token, sio):
@@ -23,6 +22,7 @@ def loop(acc, img, settings):
 
     if settings["mode"] == "print":
         while True:
+            placed = []
             for i in range(len(img)):
                 for n in range(len(img[i])):
                     if img[n][i] != '000000':
@@ -30,9 +30,12 @@ def loop(acc, img, settings):
                             placed.append([n,i])
                             place(img[n][i], [settings["start"][0] + i, settings["start"][1] + n], acctoken, sio[acc])
                             time.sleep(settings["delay"])
-            
+
     elif settings["mode"] == "realistic":
         while True:
+            placed = []
+            print(len(img[0]))
+            print(len(img))
             n = random.randint(0,len(img[0])-1)
             i = random.randint(0,len(img)-1)
             if img[n][i] != '000000':
