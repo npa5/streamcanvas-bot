@@ -25,17 +25,15 @@ def loop(acc, img, settings):
             placed = []
             for i in range(len(img)):
                 for n in range(len(img[i])):
-                    if img[n][i] != '000000':
-                        if [n, i] not in placed:
-                            placed.append([n,i])
-                            place(img[n][i], [settings["start"][0] + i, settings["start"][1] + n], acctoken, sio[acc])
+                    if img[i][n] != '000000':
+                        if [i, n] not in placed:
+                            placed.append([i,n])
+                            place(img[i][n], [settings["start"][0] + n, settings["start"][1] + i], acctoken, sio[acc])
                             time.sleep(settings["delay"])
 
     elif settings["mode"] == "realistic":
         while True:
             placed = []
-            print(len(img[0]))
-            print(len(img))
             n = random.randint(0,len(img[0])-1)
             i = random.randint(0,len(img)-1)
             if img[n][i] != '000000':
