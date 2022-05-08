@@ -1,5 +1,5 @@
+from canvas import log
 from PIL import Image
-import canvas.log as log
 
 def rgb_to_hex(rgb):
     return '%02x%02x%02x' % rgb
