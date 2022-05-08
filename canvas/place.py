@@ -1,5 +1,4 @@
-import canvas.log as log
-import canvas.account as account
+from canvas import account,log
 import threading
 import random
 import time
