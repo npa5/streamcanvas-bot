@@ -14,11 +14,11 @@ def load(name):
             cl = ()
             for i in range(0,3):
                 cl = cl + (pixel[i],)
-            image.append(rgb_to_hex(cl)) # Converts all pixels from rgb to hex and
-                                         # appends them to a list.
+            image.append([rgb_to_hex(cl), pixel[3]]) # Converts all pixels from rgb to hex and appends them and the pixel's opacity value to a lists
+
         log.info("Successfully loaded image.")
         img2d = to2d(image, width, height) # Converts 1 dimensional to 2 dimenional array,
-        return img2d                       #this makes using the array later on much easier.
+        return img2d                       # this makes using the array later on much easier.
   
 def to2d(array, width, height):
     array2 = []
