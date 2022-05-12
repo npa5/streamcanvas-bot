@@ -9,8 +9,12 @@ sio = {}
 i = 0
 
 def place(color, pixel, token, sio):
-    sio.emit("p", {"t": token, "x": pixel[0], "y": pixel[1], "c": color})
-    log.info(f"Placed pixel {color} at {pixel}")
+    if color[1] != 0:
+        sio.emit("p", {"t": token, "x": pixel[0], "y": pixel[1], "c": color[0]})
+        log.info(f"Placed pixel {color} at {pixel}")
+        return True
+    else:
+        return False
 
 def loop(acc, img, settings):
     global sio,i,n,placed
@@ -24,22 +28,18 @@ def loop(acc, img, settings):
             placed = []
             for i in range(len(img)):
                 for n in range(len(img[i])):
-                    if img[i][n] != '000000':
-                        if [i, n] not in placed:
-                            placed.append([i,n])
-                            place(img[i][n], [settings["start"][0] + n, settings["start"][1] + i], acctoken, sio[acc])
-                            time.sleep(settings["delay"])
+                    if [i, n] not in placed and place(img[i][n], [settings["start"][0] + n, settings["start"][1] + i], acctoken, sio[acc]):
+                        placed.append([i,n])
+                        time.sleep(settings["delay"])
 
     elif settings["mode"] == "realistic":
         while True:
             placed = []
             n = random.randint(0,len(img[0])-1)
             i = random.randint(0,len(img)-1)
-            if img[n][i] != '000000':
-                if [n, i] not in placed:
-                    placed.append([n,i])
-                    place(img[n][i], [settings["start"][0] + i, settings["start"][1] + n], acctoken, sio[acc])
-                    time.sleep(settings["delay"])
+            if [n, i] not in placed and place(img[n][i], [settings["start"][0] + i, settings["start"][1] + n], acctoken, sio[acc]):
+                placed.append([n,i])
+                time.sleep(settings["delay"])
 
     elif settings["mode"] == "void":
         place_at = [0,0]
@@ -48,7 +48,7 @@ def loop(acc, img, settings):
             while place_at in placed:
                 place_at = [random.randint(settings["start"][0]-int(i),settings["start"][0]+int(i)),random.randint(settings["start"][1]-int(i),settings["start"][1]+int(i))]
                 i = i + settings["void_speed"]
-            place(settings["void_color"], place_at, acctoken, sio[acc])
+            place([settings["void_color"], 100], place_at, acctoken, sio[acc])
             placed.append(place_at)
     else:
         log.error("Provided invalid mode.")
