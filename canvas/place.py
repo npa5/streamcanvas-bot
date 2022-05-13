@@ -17,7 +17,7 @@ def place(color, pixel, token, sio):
         return False
 
 def loop(acc, img, settings):
-    global sio,i,n,placed
+    global sio,placed
     iterations = 0
     acctoken = account.auth(acc, settings["channel"])
     sio[acc] = socketio.Client()
@@ -39,20 +39,22 @@ def loop(acc, img, settings):
                         iterations = iterations + 1
 
     elif settings["mode"] == "realistic":
+        global x,y
         iterations = 0
         while True:
             placed = []
-            n = random.randint(0,len(img[0])-1)
-            i = random.randint(0,len(img)-1)
+            x = random.randint(0,len(img[0])-1)
+            y = random.randint(0,len(img)-1)
             if iterations*settings["delay"] >= 3500:
                 acctoken = account.auth(acc, settings["channel"])
                 iterations = 0
-            if [n, i] not in placed and place(img[n][i], [settings["start"][0] + i, settings["start"][1] + n], acctoken, sio[acc]):
-                placed.append([n,i])
+            if [n, i] not in placed and place(img[x][y], [settings["start"][0] + y, settings["start"][1] + x], acctoken, sio[acc]):
+                placed.append([x,y])
                 time.sleep(settings["delay"])
                 iterations = iterations + 1
 
     elif settings["mode"] == "void":
+        globaly
         place_at = [0,0]
         while True:
             if iterations*settings["delay"] >= 3500:
@@ -60,8 +62,8 @@ def loop(acc, img, settings):
                 iterations = 0
             time.sleep(settings["delay"])
             while place_at in placed:
-                place_at = [random.randint(settings["start"][0]-int(i),settings["start"][0]+int(i)),random.randint(settings["start"][1]-int(i),settings["start"][1]+int(i))]
-                i = i + settings["void_speed"]
+                place_at = [random.randint(settings["start"][0]-int(y),settings["start"][0]+int(y)),random.randint(settings["start"][1]-int(y),settings["start"][1]+int(y))]
+                y = y + settings["void_speed"]
             place([settings["void_color"], 100], place_at, acctoken, sio[acc])
             placed.append(place_at)
             iterations = iterations + 1
