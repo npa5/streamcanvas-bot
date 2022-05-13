@@ -48,7 +48,7 @@ def loop(acc, img, settings):
             if iterations*settings["delay"] >= 3500:
                 acctoken = account.auth(acc, settings["channel"])
                 iterations = 0
-            if [n, i] not in placed and place(img[x][y], [settings["start"][0] + y, settings["start"][1] + x], acctoken, sio[acc]):
+            if [x, y] not in placed and place(img[x][y], [settings["start"][0] + y, settings["start"][1] + x], acctoken, sio[acc]):
                 placed.append([x,y])
                 time.sleep(settings["delay"])
                 iterations = iterations + 1
